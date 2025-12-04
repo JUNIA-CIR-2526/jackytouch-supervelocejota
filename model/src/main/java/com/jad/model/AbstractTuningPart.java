@@ -28,7 +28,8 @@ public abstract class AbstractTuningPart implements ITuningPart, ICar {
 
         int height = baseAscii.size();
         int width = 0;
-        for (String line : baseAscii) {
+        for (int i = 0; i < baseAscii.size(); i++) {
+            String line = baseAscii.get(i);
             if (line.length() > width) {
                 width = line.length();
             }
