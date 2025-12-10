@@ -4,17 +4,17 @@ import com.jad.textwindow.TextWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsoleView {
+public class View {
     private final TextWindow textWindow;
-    private String currentCarArt = "";
+    private List<String> currentCarArt = new ArrayList<>();
     private List<String> currentLogs = new ArrayList<>();
 
-    public ConsoleView() {
+    public View() {
         this.textWindow = new TextWindow();
         this.textWindow.setVisible(true);
     }
 
-    public void displayCar(String asciiArt) {
+    public void displayCar(List<String> asciiArt) {
         this.currentCarArt = asciiArt;
         this.refreshDisplay();
     }
@@ -26,7 +26,9 @@ public class ConsoleView {
 
     private void refreshDisplay() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.currentCarArt).append("\n");
+        for (String line : this.currentCarArt) {
+            sb.append(line).append("\n");
+        }
         sb.append("\n--- Active Effects ---\n");
         for (String log : this.currentLogs) {
             sb.append(log).append("\n");

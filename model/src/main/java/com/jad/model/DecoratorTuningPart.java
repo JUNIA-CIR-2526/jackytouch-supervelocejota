@@ -1,19 +1,20 @@
 package com.jad.model;
 
 import com.jad.share.ICar;
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 import com.jad.share.ITuningPart;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTuningPart implements ITuningPart, ICar {
+public abstract class DecoratorTuningPart implements ITuningPart {
     private List<String> asciiArt;
-    private IMechanicalEffect effect;
-    private List<IMechanicalEffect> availableEffects;
+    private IMechanicalBehavior effect;
+    private List<IMechanicalBehavior> availableEffects;
     private ICar decoratedCar;
 
-    public AbstractTuningPart(String fileName, IMechanicalEffect defaultEffect, List<IMechanicalEffect> availableEffects) {
+    public DecoratorTuningPart(String fileName, IMechanicalBehavior defaultEffect,
+            List<IMechanicalBehavior> availableEffects) {
         this.asciiArt = AsciiLoader.load(fileName);
         this.effect = defaultEffect;
         this.availableEffects = availableEffects;
@@ -79,7 +80,7 @@ public abstract class AbstractTuningPart implements ITuningPart, ICar {
     }
 
     @Override
-    public void setEffect(IMechanicalEffect effect) {
+    public void setEffect(IMechanicalBehavior effect) {
         this.effect = effect;
     }
 
@@ -89,7 +90,7 @@ public abstract class AbstractTuningPart implements ITuningPart, ICar {
     }
 
     @Override
-    public List<IMechanicalEffect> getAvailableEffects() {
+    public List<IMechanicalBehavior> getAvailableEffects() {
         return this.availableEffects;
     }
 }

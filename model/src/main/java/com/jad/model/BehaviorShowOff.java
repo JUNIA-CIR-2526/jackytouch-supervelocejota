@@ -1,8 +1,8 @@
 package com.jad.model;
 
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 
-public class ShowOffEffect implements IMechanicalEffect {
+public class BehaviorShowOff implements IMechanicalBehavior {
     @Override
     public String getDescription() {
         return "> bruit distinctif";

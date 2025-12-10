@@ -2,25 +2,25 @@ package com.jad.controller;
 
 import com.jad.model.CarBase;
 import com.jad.share.ICar;
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 import com.jad.share.ITuningPart;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GarageController {
+public class Controller {
     private ICar car;
     private List<ITuningPart> installedParts = new ArrayList<>();
 
-    public GarageController() {
-        this.car = CarBase.getInstance();
+    public Controller() {
+        this.car = new CarBase();
     }
 
     public void addTuning(ITuningPart part) {
         this.installedParts.add(part);
     }
 
-    public void changeSetting(ITuningPart part, IMechanicalEffect newEffect) {
+    public void changeSetting(ITuningPart part, IMechanicalBehavior newEffect) {
         part.setEffect(newEffect);
     }
 
@@ -33,7 +33,7 @@ public class GarageController {
     }
 
     private ICar buildCarChain() {
-        ICar current = CarBase.getInstance();
+        ICar current = this.car;
         for (int i = 0; i < this.installedParts.size(); i++) {
             ITuningPart part = this.installedParts.get(i);
             part.setDecoratedCar(current);

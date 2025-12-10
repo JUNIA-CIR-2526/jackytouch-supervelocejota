@@ -1,8 +1,8 @@
 package com.jad.model;
 
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 
-public class AerodynamicEffect implements IMechanicalEffect {
+public class BehaviorAerodynamic implements IMechanicalBehavior {
     @Override
     public String getDescription() {
         return "> stabilité accrue";

@@ -1,8 +1,8 @@
 package com.jad.model;
 
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 
-public class ExaggeratedEffect implements IMechanicalEffect {
+public class BehaviorExaggerated implements IMechanicalBehavior {
     @Override
     public String getDescription() {
         return "> vitesse max réduite, effet visuel accentué";

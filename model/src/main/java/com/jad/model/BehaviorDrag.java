@@ -1,8 +1,8 @@
 package com.jad.model;
 
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 
-public class DragEffect implements IMechanicalEffect {
+public class BehaviorDrag implements IMechanicalBehavior {
     @Override
     public String getDescription() {
         return "> bruit extrême";
