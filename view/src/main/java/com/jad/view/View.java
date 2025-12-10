@@ -1,6 +1,8 @@
 package com.jad.view;
 
 import com.jad.textwindow.TextWindow;
+import com.jad.textwindow.TextWindowSettings;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,11 @@ public class View {
     private List<String> currentLogs = new ArrayList<>();
 
     public View() {
-        this.textWindow = new TextWindow();
+        TextWindowSettings settings = new TextWindowSettings();
+        settings.setFontSize(20f);
+        settings.setScreenHeight(20);
+        settings.setScreenWidth(60);
+        this.textWindow = new TextWindow(settings);
         this.textWindow.setVisible(true);
     }
 
@@ -22,6 +28,10 @@ public class View {
     public void displayLog(List<String> effects) {
         this.currentLogs = effects;
         this.refreshDisplay();
+    }
+
+    public void addKeyListener(java.awt.event.KeyListener listener) {
+        this.textWindow.addKeyListener(listener);
     }
 
     private void refreshDisplay() {

@@ -10,14 +10,11 @@ import java.util.List;
 public abstract class DecoratorTuningPart implements ITuningPart {
     private List<String> asciiArt;
     private IMechanicalBehavior effect;
-    private List<IMechanicalBehavior> availableEffects;
     private ICar decoratedCar;
 
-    public DecoratorTuningPart(String fileName, IMechanicalBehavior defaultEffect,
-            List<IMechanicalBehavior> availableEffects) {
+    public DecoratorTuningPart(String fileName, IMechanicalBehavior defaultEffect) {
         this.asciiArt = AsciiLoader.load(fileName);
         this.effect = defaultEffect;
-        this.availableEffects = availableEffects;
     }
 
     @Override
@@ -38,7 +35,6 @@ public abstract class DecoratorTuningPart implements ITuningPart {
 
         char[][] canvas = new char[height][width];
 
-        // Initialize canvas with base car
         for (int y = 0; y < height; y++) {
             String line = baseAscii.get(y);
             for (int x = 0; x < width; x++) {
@@ -50,12 +46,11 @@ public abstract class DecoratorTuningPart implements ITuningPart {
             }
         }
 
-        // Overlay this part
         for (int y = 0; y < this.asciiArt.size() && y < height; y++) {
             String line = this.asciiArt.get(y);
             for (int x = 0; x < line.length() && x < width; x++) {
                 char c = line.charAt(x);
-                if (c != '.') { // '.' is transparent
+                if (c != '.') {
                     canvas[y][x] = c;
                 }
             }
@@ -90,7 +85,6 @@ public abstract class DecoratorTuningPart implements ITuningPart {
     }
 
     @Override
-    public List<IMechanicalBehavior> getAvailableEffects() {
-        return this.availableEffects;
-    }
+    public abstract void nextSpecification();
+
 }

@@ -1,3 +1,6 @@
+//Partie aider de l'ia car fonction de base ne marchait pas
+
+
 package com.jad.model;
 
 import java.io.IOException;

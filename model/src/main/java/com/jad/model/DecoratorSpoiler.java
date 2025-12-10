@@ -1,12 +1,16 @@
 package com.jad.model;
 
-import java.util.Arrays;
-
 public class DecoratorSpoiler extends DecoratorTuningPart {
+    private final BehaviorSpoiler behavior;
+
     public DecoratorSpoiler() {
-        super("spoiler.txt", new BehaviorAerodynamic(), Arrays.asList(
-                new BehaviorAesthetic(),
-                new BehaviorAerodynamic(),
-                new BehaviorExaggerated()));
+        super("spoiler.txt", new BehaviorSpoiler());
+        this.behavior = new BehaviorSpoiler();
+        this.setEffect(this.behavior);
+    }
+
+    @Override
+    public void nextSpecification() {
+        this.behavior.nextSpecification();
     }
 }

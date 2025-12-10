@@ -9,7 +9,5 @@ public interface ITuningPart extends ICar {
 
     String getEffectDescription();
 
-    List<IMechanicalBehavior> getAvailableEffects();
-
     void setDecoratedCar(ICar car);
 }

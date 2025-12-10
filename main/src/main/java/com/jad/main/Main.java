@@ -15,15 +15,28 @@ public class Main {
         DecoratorRims rims = new DecoratorRims();
         DecoratorExhaust exhaust = new DecoratorExhaust();
 
-        controller.changeSetting(spoiler, new BehaviorExaggerated());
-        controller.changeSetting(neon, new BehaviorDisco());
-        controller.changeSetting(rims, new BehaviorPerformance());
-        controller.changeSetting(exhaust, new BehaviorSport());
-
         controller.addTuning(neon);
-        controller.addTuning(exhaust);
         controller.addTuning(rims);
+        controller.addTuning(exhaust);
         controller.addTuning(spoiler);
+
+        view.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == java.awt.event.KeyEvent.VK_UP) {
+                    spoiler.nextSpecification();
+                } else if (key == java.awt.event.KeyEvent.VK_DOWN) {
+                    exhaust.nextSpecification();
+                } else if (key == java.awt.event.KeyEvent.VK_LEFT) {
+                    rims.nextSpecification();
+                } else if (key == java.awt.event.KeyEvent.VK_RIGHT) {
+                    neon.nextSpecification();
+                }
+                view.displayCar(controller.getRenderedCar());
+                view.displayLog(controller.getEffectDescriptions());
+            }
+        });
 
         view.displayCar(controller.getRenderedCar());
         view.displayLog(controller.getEffectDescriptions());

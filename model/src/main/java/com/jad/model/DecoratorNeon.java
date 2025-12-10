@@ -1,12 +1,15 @@
 package com.jad.model;
 
-import java.util.Arrays;
-
 public class DecoratorNeon extends DecoratorTuningPart {
+    private final BehaviorNeon behavior;
+
     public DecoratorNeon() {
-        super("neon.txt", new BehaviorShowOff(), Arrays.asList(
-                new BehaviorSober(),
-                new BehaviorDisco(),
-                new BehaviorRandom()));
+        super("neon.txt", new BehaviorNeon());
+        this.behavior = new BehaviorNeon();
+        this.setEffect(this.behavior);
+    }
+
+    public void nextSpecification() {
+        this.behavior.nextSpecification();
     }
 }

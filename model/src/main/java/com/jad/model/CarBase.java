@@ -1,6 +1,7 @@
 package com.jad.model;
 
 import com.jad.share.ICar;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,5 +20,9 @@ public class CarBase implements ICar {
     @Override
     public List<String> getEffects() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public void nextSpecification() {
     }
 }
