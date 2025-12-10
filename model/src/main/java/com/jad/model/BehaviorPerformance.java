@@ -1,8 +1,8 @@
 package com.jad.model;
 
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 
-public class PerformanceEffect implements IMechanicalEffect {
+public class BehaviorPerformance implements IMechanicalBehavior {
     @Override
     public String getDescription() {
         return "> accélération améliorée";

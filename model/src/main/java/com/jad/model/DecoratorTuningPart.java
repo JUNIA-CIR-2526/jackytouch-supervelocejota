@@ -1,22 +1,20 @@
 package com.jad.model;
 
 import com.jad.share.ICar;
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 import com.jad.share.ITuningPart;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTuningPart implements ITuningPart, ICar {
+public abstract class DecoratorTuningPart implements ITuningPart {
     private List<String> asciiArt;
-    private IMechanicalEffect effect;
-    private List<IMechanicalEffect> availableEffects;
+    private IMechanicalBehavior effect;
     private ICar decoratedCar;
 
-    public AbstractTuningPart(String fileName, IMechanicalEffect defaultEffect, List<IMechanicalEffect> availableEffects) {
+    public DecoratorTuningPart(String fileName, IMechanicalBehavior defaultEffect) {
         this.asciiArt = AsciiLoader.load(fileName);
         this.effect = defaultEffect;
-        this.availableEffects = availableEffects;
     }
 
     @Override
@@ -37,7 +35,6 @@ public abstract class AbstractTuningPart implements ITuningPart, ICar {
 
         char[][] canvas = new char[height][width];
 
-        // Initialize canvas with base car
         for (int y = 0; y < height; y++) {
             String line = baseAscii.get(y);
             for (int x = 0; x < width; x++) {
@@ -49,12 +46,11 @@ public abstract class AbstractTuningPart implements ITuningPart, ICar {
             }
         }
 
-        // Overlay this part
         for (int y = 0; y < this.asciiArt.size() && y < height; y++) {
             String line = this.asciiArt.get(y);
             for (int x = 0; x < line.length() && x < width; x++) {
                 char c = line.charAt(x);
-                if (c != '.') { // '.' is transparent
+                if (c != '.') {
                     canvas[y][x] = c;
                 }
             }
@@ -79,7 +75,7 @@ public abstract class AbstractTuningPart implements ITuningPart, ICar {
     }
 
     @Override
-    public void setEffect(IMechanicalEffect effect) {
+    public void setEffect(IMechanicalBehavior effect) {
         this.effect = effect;
     }
 
@@ -89,7 +85,6 @@ public abstract class AbstractTuningPart implements ITuningPart, ICar {
     }
 
     @Override
-    public List<IMechanicalEffect> getAvailableEffects() {
-        return this.availableEffects;
-    }
+    public abstract void nextSpecification();
+
 }

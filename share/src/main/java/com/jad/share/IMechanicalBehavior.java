@@ -1,5 +1,5 @@
 package com.jad.share;
 
-public interface IMechanicalEffect {
+public interface IMechanicalBehavior {
     String getDescription();
 }

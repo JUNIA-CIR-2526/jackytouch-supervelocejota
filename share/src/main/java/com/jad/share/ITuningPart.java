@@ -4,8 +4,10 @@ import java.util.List;
 
 public interface ITuningPart extends ICar {
     List<String> getAsciiArt();
-    void setEffect(IMechanicalEffect effect);
+
+    void setEffect(IMechanicalBehavior effect);
+
     String getEffectDescription();
-    List<IMechanicalEffect> getAvailableEffects();
+
     void setDecoratedCar(ICar car);
 }

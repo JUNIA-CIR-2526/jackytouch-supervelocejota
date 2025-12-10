@@ -1,8 +1,8 @@
 package com.jad.model;
 
-import com.jad.share.IMechanicalEffect;
+import com.jad.share.IMechanicalBehavior;
 
-public class AestheticEffect implements IMechanicalEffect {
+public class BehaviorAesthetic implements IMechanicalBehavior {
     @Override
     public String getDescription() {
         return "> aucun effet mécanique";

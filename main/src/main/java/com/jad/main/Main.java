@@ -1,40 +1,44 @@
 package com.jad.main;
 
-import com.jad.controller.GarageController;
+import com.jad.controller.Controller;
 import com.jad.model.*;
-import com.jad.textwindow.TextWindow;
-
-import java.util.List;
+import com.jad.view.View;
 
 public class Main {
     public static void main(String[] args) {
-        TextWindow textWindow = new TextWindow();
-        textWindow.setVisible(true);
+        View view = new View();
 
-        GarageController controller = new GarageController();
+        Controller controller = new Controller();
 
-        Spoiler spoiler = new Spoiler();
-        Neon neon = new Neon();
-        Rims rims = new Rims();
-        Exhaust exhaust = new Exhaust();
+        DecoratorSpoiler spoiler = new DecoratorSpoiler();
+        DecoratorNeon neon = new DecoratorNeon();
+        DecoratorRims rims = new DecoratorRims();
+        DecoratorExhaust exhaust = new DecoratorExhaust();
 
-        controller.changeSetting(spoiler, new ExaggeratedEffect());
-     
-        controller.changeSetting(rims, new PerformanceEffect());
-        controller.changeSetting(exhaust, new SportEffect());
-
-        controller.addTuning(spoiler);
-        controller.addTuning(exhaust);
+        controller.addTuning(neon);
         controller.addTuning(rims);
+        controller.addTuning(exhaust);
+        controller.addTuning(spoiler);
 
-        List<String> carAscii = controller.getRenderedCar();
-        List<String> effects = controller.getEffectDescriptions();
+        view.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == java.awt.event.KeyEvent.VK_UP) {
+                    spoiler.nextSpecification();
+                } else if (key == java.awt.event.KeyEvent.VK_DOWN) {
+                    exhaust.nextSpecification();
+                } else if (key == java.awt.event.KeyEvent.VK_LEFT) {
+                    rims.nextSpecification();
+                } else if (key == java.awt.event.KeyEvent.VK_RIGHT) {
+                    neon.nextSpecification();
+                }
+                view.displayCar(controller.getRenderedCar());
+                view.displayLog(controller.getEffectDescriptions());
+            }
+        });
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.join("\n", carAscii));
-        sb.append("\n\n");
-        sb.append(String.join("\n", effects));
-
-        textWindow.display(sb.toString());
+        view.displayCar(controller.getRenderedCar());
+        view.displayLog(controller.getEffectDescriptions());
     }
 }
